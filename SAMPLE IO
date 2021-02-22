@@ -1,0 +1,190 @@
+INPUT
+-----------------------------------------
+(define factorial
+  (fun (n)
+    (if (< n 0.9)
+        1  ;; base case
+        (factorial (- n 1) ;* recursive case *; ))))
+
+(print (+ "5! is " (factorial 5)))
+
+-----------------------------------------
+After lexing, list of tokens is:
+-----------------------------------------
+(list
+ (list 'OPAREN #f)
+ (list 'NAME 'define)
+ (list 'NAME 'factorial)
+ (list 'OPAREN #f)
+ (list 'NAME 'fun)
+ (list 'OPAREN #f)
+ (list 'NAME 'n)
+ (list 'CPAREN #f)
+ (list 'OPAREN #f)
+ (list 'NAME 'if)
+ (list 'OPAREN #f)
+ (list 'NAME '<)
+ (list 'NAME 'n)
+ (list 'FLOAT 0.9)
+ (list 'CPAREN #f)
+ (list 'INT 1)
+ (list 'OPAREN #f)
+ (list 'NAME 'factorial)
+ (list 'OPAREN #f)
+ (list 'NAME '-)
+ (list 'NAME 'n)
+ (list 'INT 1)
+ (list 'CPAREN #f)
+ (list 'CPAREN #f)
+ (list 'CPAREN #f)
+ (list 'CPAREN #f)
+ (list 'CPAREN #f)
+ (list 'OPAREN #f)
+ (list 'NAME 'print)
+ (list 'OPAREN #f)
+ (list 'NAME '+)
+ (list 'STRING "5! is ")
+ (list 'OPAREN #f)
+ (list 'NAME 'factorial)
+ (list 'INT 5)
+ (list 'CPAREN #f)
+ (list 'CPAREN #f)
+ (list 'CPAREN #f))
+ -----------------------------------------
+ Passing these tokens to parse function returns following output
+ -----------------------------------------
+ '(program
+  (exprList
+   (expr
+    (invocation
+     (OPAREN #f)
+     (exprList
+      (expr
+       (atom
+        (NAME define)))
+      (optExprList
+       (exprList
+        (expr
+         (atom
+          (NAME factorial)))
+        (optExprList
+         (exprList
+          (expr
+           (invocation
+            (OPAREN #f)
+            (exprList
+             (expr
+              (atom
+               (NAME fun)))
+             (optExprList
+              (exprList
+               (expr
+                (invocation
+                 (OPAREN #f)
+                 (exprList
+                  (expr
+                   (atom
+                    (NAME n)))
+                  (optExprList))
+                 (CPAREN #f)))
+               (optExprList
+                (exprList
+                 (expr
+                  (invocation
+                   (OPAREN #f)
+                   (exprList
+                    (expr ; if
+                     (atom
+                      (NAME if)))
+                    (optExprList
+                     (exprList
+                      (expr ; (< n 0.9)
+                       (invocation
+                        (OPAREN #f)
+                        (exprList
+                         (expr (atom (NAME <)))
+                         (optExprList
+                          (exprList
+                           (expr (atom (NAME n)))
+                           (optExprList
+                            (exprList
+                             (expr (atom (number (FLOAT 0.9))))
+                             (optExprList))))))
+                        (CPAREN #f)))
+                      (optExprList
+                       (exprList
+                        (expr (atom (number (INT 1))))
+                        (optExprList
+                         (exprList
+                          (expr
+                           (invocation
+                            (OPAREN #f)
+                            (exprList
+                             (expr (atom (NAME factorial)))
+                             (optExprList
+                              (exprList
+                               (expr
+                                (invocation
+                                 (OPAREN #f)
+                                 (exprList
+                                  (expr (atom (NAME -)))
+                                  (optExprList
+                                   (exprList
+                                    (expr (atom (NAME n)))
+                                    (optExprList
+                                     (exprList
+                                      (expr (atom (number (INT 1))))
+                                      (optExprList))))))
+                                 (CPAREN #f)))
+                               (optExprList))))
+                            (CPAREN #f)))
+                          (optExprList))))))))
+                   (CPAREN #f)))
+                 (optExprList))))))
+            (CPAREN #f)))
+          (optExprList))))))
+     (CPAREN #f)))
+   (optExprList
+    (exprList
+     (expr
+      (invocation
+       (OPAREN #f)
+       (exprList
+        (expr
+         (atom (NAME print)))
+        (optExprList
+         (exprList
+          (expr
+           (invocation
+            (OPAREN #f)
+            (exprList
+             (expr
+              (atom
+               (NAME +)))
+             (optExprList
+              (exprList
+               (expr
+                (atom
+                 (STRING "5! is ")))
+               (optExprList
+                (exprList
+                 (expr
+                  (invocation
+                   (OPAREN #f)
+                   (exprList
+                    (expr
+                     (atom
+                      (NAME factorial)))
+                    (optExprList
+                     (exprList
+                      (expr
+                       (atom
+                        (number
+                         (INT 5))))
+                      (optExprList))))
+                   (CPAREN #f)))
+                 (optExprList))))))
+            (CPAREN #f)))
+          (optExprList))))
+       (CPAREN #f)))
+     (optExprList)))))
